@@ -26,9 +26,8 @@ namespace ExpeditionMap.Models
         public string IndirizzoDest {  get; set; }
 
         [Required(ErrorMessage = "Nominativo Obbligatorio")]
-        public int NominativoInt {  get; set; }
+        public int NominativoDest {  get; set; }
 
-        [Range(1,30, ErrorMessage = "Inserire un costo valido")]
         [Required(ErrorMessage = "Costo Obbligatorio")]
         public int CostoSpedizione { get; set; }
 

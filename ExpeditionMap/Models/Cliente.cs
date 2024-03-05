@@ -20,7 +20,7 @@ namespace ExpeditionMap.Models
         [EmailAddress(ErrorMessage = "E-mail inserita non valida")]
         public string Email { get; set; }
 
-        [Range(1, 12, ErrorMessage = "Inserire un numero di telefono valido")]
+       //[Range(1, 12, ErrorMessage = "Inserire un numero di telefono valido")]
         public int RecapitoTel {  get; set; }
 
         [StringLength(50, ErrorMessage = "Indirizzo inserito troppo lungo, inserire un indirizzo valido")]

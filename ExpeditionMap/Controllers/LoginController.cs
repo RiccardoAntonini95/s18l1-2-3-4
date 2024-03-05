@@ -12,12 +12,11 @@ namespace ExpeditionMap.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
         public ActionResult Index()
         {
             if(HttpContext.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home"); //sei già loggato, torna alla home
             }
             return View();
         }
@@ -27,7 +26,7 @@ namespace ExpeditionMap.Controllers
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
             var conn = new SqlConnection(connectionString);
-            if(ModelState.IsValid)
+            if(ModelState.IsValid) //per rendere i controlli dei model funzionanti
             {
             try
             {
