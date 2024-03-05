@@ -27,6 +27,8 @@ namespace ExpeditionMap.Controllers
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
             var conn = new SqlConnection(connectionString);
+            if(ModelState.IsValid)
+            {
             try
             {
                 conn.Open();
@@ -42,8 +44,11 @@ namespace ExpeditionMap.Controllers
                     FormsAuthentication.SetAuthCookie(reader["IdUtente"].ToString(), true);
                     return RedirectToAction("Index", "Home");
                 }
-
-                return RedirectToAction("LoggedIn");
+                else //se il reader non ha rows, la select è andata a vuoto e quindi il database non riconosce l'utente
+                //quindi ridireziona su errore perchè hai sbagliato qualche dato
+                    {
+                        return View("Error");
+                    }
             }
             catch (Exception ex)
             {
@@ -53,6 +58,9 @@ namespace ExpeditionMap.Controllers
             { 
                 conn.Close();
             }
+            }
+            return View();
+
         }
 
         [Authorize]
@@ -69,8 +77,6 @@ namespace ExpeditionMap.Controllers
         {
             // sloggare l'utente
             FormsAuthentication.SignOut();
-
-            // ridirezionarlo da qualche parte
             return RedirectToAction("Index", "Login");
 
         }
