@@ -1,0 +1,29 @@
+﻿@model ExpeditionMap.Models.Utente
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Username)
+    @Html.EditorFor(model => model.Username)
+    @Html.ValidationMessageFor(model => model.Username)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Password)
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Ruolo)
+    @Html.EditorFor(model => model.Ruolo)
+    @Html.ValidationMessageFor(model => model.Ruolo)
+    <br>
+    <br>
+    <button class="btn btn-primary">Login</button>
+}
+

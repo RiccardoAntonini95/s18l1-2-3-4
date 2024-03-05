@@ -8,6 +8,8 @@ namespace ExpeditionMap.Models
 {
     public class Spedizione
     {
+        [Key]
+        public int IdSpedizione { get; set; }
 
         [Required(ErrorMessage = "Data Spedizione Obbligatoria")]
         public DateTime DataSpedizione { get; set; }
@@ -15,15 +17,18 @@ namespace ExpeditionMap.Models
         [Required(ErrorMessage = "Peso spedizione Obbligatorio")]
         public int Peso { get; set; }
 
+        [StringLength(50, ErrorMessage = "Città non valida, inserire una città di massimo 50 caratteri")]
         [Required(ErrorMessage = "Città Obbligatoria")]
         public string CittaDestinataria { get; set; }
 
+        [StringLength(50, ErrorMessage = "Indirizzo non valido, inserire un indirizzo di massimo 50 caratteri")]
         [Required(ErrorMessage = "Indirizzo Obbligatorio")]
         public string IndirizzoDest {  get; set; }
 
         [Required(ErrorMessage = "Nominativo Obbligatorio")]
         public int NominativoInt {  get; set; }
 
+        [Range(1,30, ErrorMessage = "Inserire un costo valido")]
         [Required(ErrorMessage = "Costo Obbligatorio")]
         public int CostoSpedizione { get; set; }
 
