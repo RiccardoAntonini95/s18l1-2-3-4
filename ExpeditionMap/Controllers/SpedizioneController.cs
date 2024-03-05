@@ -14,6 +14,32 @@ namespace ExpeditionMap.Controllers
         [Authorize]
         public ActionResult AggiungiSpedizione()
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
+            var conn = new SqlConnection(connectionString);
+            List<Cliente> listaClienti = new List<Cliente>();
+            conn.Open();
+            var commandList = new SqlCommand("SELECT * FROM Clienti", conn);
+            var readerList = commandList.ExecuteReader();
+
+            if (readerList.HasRows) //recupera lista nominativi per il form spedizioni
+            {
+                while (readerList.Read())
+                {
+                    var cliente = new Cliente()
+                    {
+                        IdCliente = (int)readerList["IdCliente"],
+                        CodiceFiscale = (string)readerList["CodiceFiscale"],
+                        PartitaIva = (string)readerList["PartitaIva"],
+                        Email = (string)readerList["Email"],
+                        RecapitoTel = (int)readerList["RecapitoTel"],
+                        Indirizzo = (string)readerList["Indirizzo"],
+                        NominativoCliente = (string)readerList["NominativoCliente"]
+                    };
+                    listaClienti.Add(cliente);
+                    ViewBag.listaClienti = listaClienti;
+                }
+                conn.Close();
+            }
             return View();
         }
 
@@ -22,6 +48,7 @@ namespace ExpeditionMap.Controllers
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
             var conn = new SqlConnection(connectionString);
+            List<Cliente> listaClienti = new List<Cliente>();
             if (ModelState.IsValid)
             {
                 try

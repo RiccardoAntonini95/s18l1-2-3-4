@@ -30,8 +30,12 @@
     <br>
     <br>
     @Html.LabelFor(model => model.NominativoDest)
-    @Html.EditorFor(model => model.NominativoDest)
-    @Html.ValidationMessageFor(model => model.NominativoDest)
+    <select name="NominativoDest">
+        @foreach (var nominativo in ViewBag.listaClienti)
+        {
+            <option value="@nominativo.IdCliente">@nominativo.NominativoCliente</option>
+        }
+    </select>
     <br>
     <br>
     @Html.LabelFor(model => model.CostoSpedizione)
@@ -44,5 +48,5 @@
     @Html.ValidationMessageFor(model => model.DataConsegnaPrevista)
     <br>
     <br>
-    <button class="btn btn-success">Genera nuovo cliente</button>
+    <button class="btn btn-success">Genera nuova spedizione</button>
 }
