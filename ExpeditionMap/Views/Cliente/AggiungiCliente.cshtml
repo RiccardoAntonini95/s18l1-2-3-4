@@ -1,0 +1,43 @@
+﻿@model ExpeditionMap.Models.Cliente
+
+@{
+    ViewBag.Title = "AggiungiCliente";
+}
+
+<h2>AggiungiCliente</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.CodiceFiscale)
+    @Html.EditorFor(model => model.CodiceFiscale)
+    @Html.ValidationMessageFor(model => model.CodiceFiscale)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.PartitaIva)
+    @Html.EditorFor(model => model.PartitaIva)
+    @Html.ValidationMessageFor(model => model.PartitaIva)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.RecapitoTel)
+    @Html.EditorFor(model => model.RecapitoTel)
+    @Html.ValidationMessageFor(model => model.RecapitoTel)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Indirizzo)
+    @Html.EditorFor(model => model.Indirizzo)
+    @Html.ValidationMessageFor(model => model.Indirizzo)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.NominativoCliente)
+    @Html.EditorFor(model => model.NominativoCliente)
+    @Html.ValidationMessageFor(model => model.NominativoCliente)
+    <br>
+    <br>
+    <button class="btn btn-success">Genera nuovo cliente</button>
+}
+

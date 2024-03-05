@@ -1,0 +1,48 @@
+﻿@model ExpeditionMap.Models.Spedizione
+
+@{
+    ViewBag.Title = "AggiungiSpedizione";
+}
+
+<h2>AggiungiSpedizione</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.DataSpedizione)
+    @Html.EditorFor(model => model.DataSpedizione, new { htmlAttributes = new { @type = "date" } })
+    @Html.ValidationMessageFor(model => model.DataSpedizione)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Peso)
+    @Html.EditorFor(model => model.Peso)
+    @Html.ValidationMessageFor(model => model.Peso)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.CittaDestinataria)
+    @Html.EditorFor(model => model.CittaDestinataria)
+    @Html.ValidationMessageFor(model => model.CittaDestinataria)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.IndirizzoDest)
+    @Html.EditorFor(model => model.IndirizzoDest)
+    @Html.ValidationMessageFor(model => model.IndirizzoDest)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.NominativoInt)
+    @Html.EditorFor(model => model.NominativoInt)
+    @Html.ValidationMessageFor(model => model.NominativoInt)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.CostoSpedizione)
+    @Html.EditorFor(model => model.CostoSpedizione)
+    @Html.ValidationMessageFor(model => model.CostoSpedizione)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.DataConsegnaPrevista)
+    @Html.EditorFor(model => model.DataConsegnaPrevista, new { htmlAttributes = new { @type = "date" } })
+    @Html.ValidationMessageFor(model => model.DataConsegnaPrevista)
+    <br>
+    <br>
+    <button class="btn btn-success">Genera nuovo cliente</button>
+}
