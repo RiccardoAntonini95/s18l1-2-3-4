@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "RisultatoTracciamento";
+}
+
+<h2>RisultatoTracciamento</h2>
+
+<table>
+    <tr>
+        <th scope="col">Stato Spedizione</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Data e ora spedizione</th>
+    </tr>
+    @foreach (var spedizione in ViewBag.listaRicerca)
+    {
+        <tr>
+            <td>@spedizione["Stato"]</td>
+            <td>@spedizione["Descrizione"]</td>
+            <td>@spedizione["DataOraSpedizione"]</td>
+        </tr>
+    }
+</table>
+

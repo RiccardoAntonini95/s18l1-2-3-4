@@ -122,7 +122,7 @@ namespace ExpeditionMap.Controllers
                     var command = new SqlCommand(@"INSERT INTO StatoSpedizioni
                      (IdSpedizione, Stato, Descrizione, DataOraSpedizione) VALUES 
                      (@idSpedizione, @stato, @descrizione, @dataOraSpedizione)", conn);
-                    command.Parameters.AddWithValue("@idSpedizione", nuovoStatoSpedizione.IdStatoSped);
+                    command.Parameters.AddWithValue("@idSpedizione", nuovoStatoSpedizione.IdSpedizione);
                     command.Parameters.AddWithValue("@stato", nuovoStatoSpedizione.Stato);
                     command.Parameters.AddWithValue("@descrizione", nuovoStatoSpedizione.Descrizione);
                     command.Parameters.AddWithValue("@dataOraSpedizione", nuovoStatoSpedizione.DataOraSpedizione);
