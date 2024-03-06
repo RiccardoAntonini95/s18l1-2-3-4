@@ -3,17 +3,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-@*QUA FORM RICERCA SPEDIZIONE*@
+<h2>Ricerca Spedizione</h2>
 
 @using (Html.BeginForm("RisultatoTracciamento", "CercaSpedizione", FormMethod.Post))
 {
-    <label for="CodiceFiscale">Codice Fiscale: </label>
+    <label for="CodiceFiscale">Codice Fiscale(se privato): </label>
     <input type="text" name="CodiceFiscale" id="CodiceFiscale">
     <br>
     <br>
-    <label for="PartitaIva">Partita Iva: </label>
+    <label for="PartitaIva">Partita Iva(se azienda): </label>
     <input type="text" name="PartitaIva" id="PartitaIva">
     <br>
     <br>
