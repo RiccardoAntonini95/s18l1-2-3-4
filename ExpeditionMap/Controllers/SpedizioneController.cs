@@ -48,7 +48,6 @@ namespace ExpeditionMap.Controllers
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
             var conn = new SqlConnection(connectionString);
-            List<Cliente> listaClienti = new List<Cliente>();
             if (ModelState.IsValid)
             {
                 try
@@ -75,6 +74,71 @@ namespace ExpeditionMap.Controllers
             }
             return View();
 
+        }
+
+        [Authorize]
+        public ActionResult StatoSpedizione()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
+            var conn = new SqlConnection(connectionString);
+            List<Spedizione> listaSpedizioni = new List<Spedizione>();
+            conn.Open();
+            var commandList = new SqlCommand("SELECT * FROM Spedizioni", conn);
+            var readerList = commandList.ExecuteReader();
+
+            if (readerList.HasRows) //recupera lista nominativi per il form spedizioni
+            {
+                while (readerList.Read())
+                {
+                    var spedizione = new Spedizione()
+                    {
+                        IdSpedizione = (int)readerList["IdSpedizione"],
+                        DataSpedizione = (DateTime)readerList["DataSpedizione"],
+                        Peso = (int)readerList["Peso"],
+                        CittaDestinataria = (string)readerList["CittaDestinataria"],
+                        IndirizzoDest = (string) readerList["IndirizzoDest"],
+                        NominativoDest = (int)readerList["NominativoDest"],
+                        CostoSpedizione = (int)readerList["CostoSpedizione"],
+                        DataConsegnaPrevista = (DateTime)readerList["DataConsegnaPrevista"]
+                    };
+                    listaSpedizioni.Add(spedizione);
+                    ViewBag.listaSpedizioni = listaSpedizioni;
+                }
+                conn.Close();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StatoSpedizione(StatoSpedizione nuovoStatoSpedizione)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
+            var conn = new SqlConnection(connectionString);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    conn.Open();
+                    var command = new SqlCommand(@"INSERT INTO StatoSpedizioni
+                     (IdSpedizione, Stato, Descrizione, DataOraSpedizione) VALUES 
+                     (@idSpedizione, @stato, @descrizione, @dataOraSpedizione)", conn);
+                    command.Parameters.AddWithValue("@idSpedizione", nuovoStatoSpedizione.IdStatoSped);
+                    command.Parameters.AddWithValue("@stato", nuovoStatoSpedizione.Stato);
+                    command.Parameters.AddWithValue("@descrizione", nuovoStatoSpedizione.Descrizione);
+                    command.Parameters.AddWithValue("@dataOraSpedizione", nuovoStatoSpedizione.DataOraSpedizione);
+                    var nRows = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    return View("Error");
+                }
+                finally { conn.Close(); }
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+
+            //ho predisposto il form per aggiornare lo stato spedizione, ora manda tutto con la post e con la query selezionerò 
+            //tutto ciò che sta nella tabella con l'id spedizione relativo, ordinato dal più recente
         }
     }
 }

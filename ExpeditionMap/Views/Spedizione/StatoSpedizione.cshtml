@@ -1,0 +1,43 @@
+﻿@model ExpeditionMap.Models.StatoSpedizione
+@{
+    ViewBag.Title = "StatoSpedizione";
+}
+
+<h2>StatoSpedizione</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.IdSpedizione)
+    <select name="IdSpedizione">
+        @foreach (var spedizione in ViewBag.listaSpedizioni)
+        {
+            <option value="@spedizione.IdSpedizione">@spedizione.IdSpedizione</option>
+        }
+    </select>
+    @Html.ValidationMessageFor(model => model.IdSpedizione)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Stato)
+    <select name="Stato">
+        <option value="In transito">In transito</option>
+        <option value="In consegna">In consegna</option>
+        <option value="Consegnato">Consegnato</option>
+        <option value="Non Consegnato">Non consegnato</option>
+    </select>
+   // @Html.EditorFor(model => model.Stato)
+    @Html.ValidationMessageFor(model => model.Stato)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.Descrizione)
+    @Html.EditorFor(model => model.Descrizione)
+    @Html.ValidationMessageFor(model => model.Descrizione)
+    <br>
+    <br>
+    @Html.LabelFor(model => model.DataOraSpedizione)
+    @Html.EditorFor(model => model.DataOraSpedizione, new { htmlAttributes = new { @type = "datetime-local" } })
+    @Html.ValidationMessageFor(model => model.DataOraSpedizione)
+    <br>
+    <br>
+    <button class="btn btn-success">Aggiorna stato spedizione</button>
+}
+

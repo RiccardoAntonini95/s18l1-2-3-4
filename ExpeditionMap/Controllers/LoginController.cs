@@ -51,7 +51,7 @@ namespace ExpeditionMap.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("LoggedIn");
+                return RedirectToAction("Error");
             }
             finally
             { 
