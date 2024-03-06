@@ -28,7 +28,7 @@ namespace ExpeditionMap.Controllers
             var conn = new SqlConnection(connectionString);
             List<StatoSpedizione> listaRicerca = new List<StatoSpedizione>();
             conn.Open();
-            var commandList = new SqlCommand("SELECT s.IdSpedizione, Stato, Descrizione, DataOraSpedizione FROM StatoSpedizioni AS s JOIN Spedizioni AS sp ON s.IdSpedizione = sp.IdSpedizione JOIN Clienti AS c ON sp.NominativoDest = c.IdCliente WHERE CodiceFiscale = @codiceFiscale OR PartitaIva = @partitaIva ", conn);
+            var commandList = new SqlCommand("SELECT s.IdSpedizione, Stato, Descrizione, DataOraSpedizione FROM StatoSpedizioni AS s JOIN Spedizioni AS sp ON s.IdSpedizione = sp.IdSpedizione JOIN Clienti AS c ON sp.NominativoDest = c.IdCliente WHERE CodiceFiscale = @codiceFiscale OR PartitaIva = @partitaIva", conn);
             commandList.Parameters.AddWithValue("@codiceFiscale", CodiceFiscale);
             commandList.Parameters.AddWithValue("@partitaIva", PartitaIva);
             var readerList = commandList.ExecuteReader();
@@ -45,11 +45,10 @@ namespace ExpeditionMap.Controllers
                         DataOraSpedizione = (DateTime)readerList["DataOraSpedizione"]
                     };
                     listaRicerca.Add(statoSpedizione);
-                    ViewBag.listaRicerca = listaRicerca;
                 }
                 conn.Close();
             }
-            return View();
+            return View(listaRicerca);
         }
     }
 }
