@@ -3,10 +3,15 @@
     ViewBag.Title = "LoggedIn";
 }
 
-<h2>LoggedIn</h2>
-<p>Yee sei loggato!</p>
-<p>L'id dell'utente loggato è @ViewBag.IdUtente</p>
+<h2>Benvenuto, scegli una funzionalità</h2>
 
+<ul>
+    <li>Individua tutte le spedizioni in consegna in data odierna</li>
+    <li>Scopri il numero delle spedizioni totali in attesa di consegna</li>
+    <li>Scopri il numero totale delle spedizioni memorizzate raggruppate per città</li>
+</ul>
+
+<h2>Effettua il logout: </h2>
 @using (Html.BeginForm("Logout", "Login"))
 {
     @Html.AntiForgeryToken();

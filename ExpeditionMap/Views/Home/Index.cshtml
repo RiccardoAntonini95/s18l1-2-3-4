@@ -1,25 +1,37 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<main>
-    <h1>Benvenuto</h1>
+<main class="text-center">
+    <h1>Expedition Map</h1>
     <section>
         <h2>Chi siamo</h2>
-        <p>Chiacchiere fittizie azienda, presentazione servizi Expedition Map</p>
+        <p>
+            Benvenuti in Expedition Map, la vostra guida affidabile attraverso i territori nazionali.
+            Siamo un'agenzia di spedizioni dedicata a offrire servizi di gestione territoriale senza pari.
+            Con una vasta esperienza nel settore, ci impegniamo a fornire soluzioni logistiche efficienti 
+            e sicure per le vostre esigenze di spedizione.
+            La nostra missione è quella di semplificare il vostro viaggio attraverso il territorio nazionale,
+            fornendo un servizio affidabile e su misura che soddisfi le vostre necessità. Con una rete di partner
+            strategici e una conoscenza approfondita dei territori, garantiamo consegne puntuali e un supporto
+            completo lungo tutto il percorso.
+            Dal trasporto di merci all'organizzazione di spedizioni complesse, ci impegniamo a superare le vostre aspettative.
+            La vostra soddisfazione è la nostra priorità assoluta e ci impegniamo costantemente
+            a fornire un servizio clienti eccezionale.
+            Affidatevi a Expedition Map per una gestione territoriale senza complicazioni.
+            Siamo qui per guidarvi verso il vostro successo.
+        </p>
     </section>
 
-    <section>
-        <h2>Cosa puoi fare su questo sito</h2>
-        <ul>
-            <li>Servizio1</li>
-            <li>Servizio2</li>
-            <li>Servizio3</li>
-            <li>Servizio4</li>
-        </ul>
+    <section class="my-3">
+        <h2>Traccia spedizione:</h2>
+        <p>Puoi tracciare le spedizioni a tuo nome inserendo il tuo codice fiscale (se sei un privato) o la partita iva (per aziende)</p>
+        @Html.ActionLink("Ricerca Spedizione", "Index", "CercaSpedizione", new { area = "" }, new { @class = "btn btn-warning fw-bold" })
+
     </section>
 
-    <section>
-        <h2>Vuoi effettuare il login?</h2>
+    <section class="my-3">
+        <h2>Possiedi già un account?</h2>
+        @Html.ActionLink("Effettua il login", "Index", "Login", new { area = "" }, new { @class = "btn btn-primary fw-bold" })
     </section>
 
 
