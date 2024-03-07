@@ -79,5 +79,53 @@ namespace ExpeditionMap.Controllers
             return RedirectToAction("Index", "Login");
 
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public JsonResult OttieniSpedizioni()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ExpeditionMapDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            string query = "SELECT * FROM StatoSpedizioni";
+
+            try
+            {
+                conn.Open();
+                SqlCommand selectCmd = new SqlCommand(query);
+                SqlDataReader reader = selectCmd.ExecuteReader();
+
+                // Lista per memorizzare i risultati
+                List<StatoSpedizione> results = new List<StatoSpedizione>();
+
+                // Leggi i dati dal reader e aggiungili alla lista
+                while (reader.Read())
+                {
+                    var resultItem = new StatoSpedizione()
+                    {
+                        IdSpedizione = (int)reader["IdSpedizione"],
+                        Stato = (string)reader["Stato"],
+                        Descrizione = (string)reader["Descrizione"],
+                        DataOraSpedizione = (DateTime)reader["DataOraSpedizione"]
+                    };
+                    results.Add(resultItem);
+                }
+
+                // Restituisci i dati in formato JSON
+                return Json(results, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                // Log dell'errore per esaminarne i dettagli
+                Console.WriteLine(ex.Message);
+
+                // Restituisci un messaggio di errore generico
+                return Json("Error");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

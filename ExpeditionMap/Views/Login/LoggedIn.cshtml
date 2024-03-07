@@ -5,6 +5,9 @@
 
 <h2>Benvenuto, scegli una funzionalità</h2>
 
+<button class="btn btn-outline-secondary" id="spedizioniOggi">Spedizioni di oggi</button>
+
+
 <ul>
     <li>Individua tutte le spedizioni in consegna in data odierna</li>
     <li>Scopri il numero delle spedizioni totali in attesa di consegna</li>
@@ -17,5 +20,24 @@
     @Html.AntiForgeryToken();
     <button class="btn btn-danger">Logout</button>
 }
+
+@section scripts{
+    <script>
+        const btnFetch = document.querySelector("#spedizioniOggi")
+        btnFetch.addEventListener("click", function () {
+            fetch('./OttieniSpedizioni')
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.error('Si è verificato un errore durante la fetch:', error);
+                });
+        })
+    </script>
+    
+    
+    
+    }
 
 
